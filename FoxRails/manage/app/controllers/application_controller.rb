@@ -4,10 +4,10 @@ class ApplicationController < ActionController::Base
   before_filter :authorize
   protect_from_forgery with: :exception
 
-  protected
+   protected
   def authorize
-  	unless User.find_by_id(session[:user_id])
-  		redirect_to login_url,:notice=>"Please log in"
+  	unless Student.find_by_id(session[:student_id])
+  		redirect_to login_url,:stuent=>"Please log in"
   	end
   end
 end

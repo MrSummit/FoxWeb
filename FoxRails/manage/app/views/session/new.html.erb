@@ -1,22 +1,27 @@
-<div>
-	<%if flash[:alert]%>
-	<p><%=flash[:alert]%></p>
-	<%end%>
 
-	<%=form_tag do%>
-	<fieldset>
-		<legend>Please Log In</legend>
-		<div>
-			<label for="name">number:</label>
-			<%=text_field_tag :number,params[:number]%>
+<section class="container">
+		<div class="login">
+			<h1>欢迎使用上机系统</h1>
+			<%if flash[:alert]%>
+			<p><%=flash[:alert]%></p>
+			<%end%>
+			<form accept-charset="UTF-8" action="/login" method="post"><div style="display:none"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="+9jv6cXsGNZ2HeGtqNbhNsoWW9K5+mdR/u/AtGxq+WY=" /></div>
+			<p>
+				<input type="text" name="number" placeholder="Username" required>
+			</p>
+			<p>
+				<input type="password" name="pswd" placeholder="Password" required>
+			</p>
+			<p class="remember_me">
+				<label> 学生<input type="radio" name="jiaose"
+					id="remember_me" value="1" checked="defalut"> 职工<input
+					type="radio" name="jiaose" id="remember_me" value="2">
+				</label>
+			</p>
+			<p class="submit">
+				<input type="submit" name="commit" value="Login">
+			</p>
+		</form>
 		</div>
-		<div>
-			<label for="password">Password:</label>
-			<%=password_field_tag :pswd,params[:pswd]%>
-		</div>
-		<div>
-			<%=submit_tag "Login"%>
-		</div>
-	</fieldset>
-	<%end%>
-</div>
+</section>
+

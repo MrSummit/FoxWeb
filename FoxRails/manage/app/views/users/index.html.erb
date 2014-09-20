@@ -1,0 +1,29 @@
+<h1>Listing users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>用户名</th>
+      <th>昵称</th>
+      <th>权限</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.user %></td>
+        <td><%= user.name %></td>
+        <td><%= user.power %></td>
+        <td><%= link_to '详情', user %></td>
+        <td><%= link_to '编辑', edit_user_path(user) %></td>
+        <td><%= link_to '删除', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '新用户', new_user_path %>

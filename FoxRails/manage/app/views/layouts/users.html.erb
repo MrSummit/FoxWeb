@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>个人管理</title>
-<link data-turbolinks-track="true" href="/assets/style.css?body=1" media="all" rel="stylesheet" />
+  <title>Manage</title>
+  
+ <link data-turbolinks-track="true" href="/assets/style.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/login.css?body=1" media="all" rel="stylesheet" />
 <script data-turbolinks-track="true" src="/assets/jquery-1.4.1.min.js?body=1"></script>
 <script data-turbolinks-track="true" src="/assets/jquery-func.js?body=1"></script>
 <script data-turbolinks-track="true" src="/assets/jquery.jcarousel.pack.js?body=1"></script>
 <script data-turbolinks-track="true" src="/assets/tablecloth.js?body=1"></script>
-  
-  
 </head>
 <body>
 	<div id="page" class="shell">
@@ -18,11 +18,17 @@
 		<h1 id="logo"><a href="#">MONDAYS</a></h1>
 		<form action="" method="post" id="search">
 			<div class="field-holder">
+			         <%if session[:student_id]%>
 				欢迎你--<%=session[:student_name]%>
+			         <%end%>
+			         <%if session[:user_id]%>
+				欢迎你--<%=session[:user_name]%>
+			         <%end%>
 			</div>
 			<%= link_to '退出',{:controller=>:session,:action=>:destroy}%>
 			<div class="cl">&nbsp;</div>
 		</form>
+		<%if session[:student_id]%>
 		<div class="cl">&nbsp;</div>
 		<div id="navigation">
 			<ul>
@@ -33,13 +39,35 @@
 			    	<a href=""><span>考勤</span></a>
 			    </li>
 			    <li>
-			    	<a href=""><span>课程查询</span></a>
+			    	<%= link_to '课程查询', courses_path %> 
 			    </li>
 			    <li>
-			    	<%= link_to '个人信息', @student %> 
+			    	<%= link_to '个人信息',:controller=>:students,:action=>:show,:id=>session[:student_id]%>
+			    	
 			    </li>
 			</ul>
-		</div>	
+		</div>
+		<%end%>
+		<%if session[:user_id]%>
+		<div class="cl">&nbsp;</div>
+		<div id="navigation">
+			<ul>
+			    <li>
+			    	<%= link_to '班级管理', grades_path %> 
+			    </li>
+			    <li>
+			    	<%= link_to '课程管理', courses_path %> 
+			    </li>
+			    <li>
+			    	<a href=""><span>考勤记录</span></a>
+			    </li>
+			    <li>
+			    	<%= link_to '个人信息',:controller=>:users,:action=>:show,:id=>session[:user_id]%>
+			    </li>
+			</ul>
+		  </div>
+	            
+	         <%end%>
 	</div>
 	<div class="main">
 		<%= yield %>

@@ -1,0 +1,31 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+               用户名<br>
+	    <%= f.text_field :user %>
+	  <br>
+	    昵称<br>
+	    <%= f.text_field :name %>
+	  <br>
+	    密码<br>
+	    <%= f.text_field :pswd %>
+	  <br>
+	   密码确认<br>
+	    <%= f.text_field :pswd_confirmation %>
+	  <br>
+              权限<br>
+             <%= f.text_field :power %>
+              <br>
+            <%= f.submit %>
+	<br>
+<% end %>

@@ -2,10 +2,13 @@ class StudentsController < ApplicationController
    skip_before_filter :authorize, only:[:new,:create]
   before_action :set_student, only: [:show, :edit, :update, :destroy]
   before_action :check_id,only:[:show,:edit,:update,:destroy]
+  layout "users"
+  
+  #before_action :cheacksession
   # GET /students
   # GET /students.json
   def index
-    @student=Student.find(session[:student_id])
+    
   end
 
   # GET /students/1
@@ -77,7 +80,7 @@ class StudentsController < ApplicationController
     def check_id
     	sid=session[:student_id].to_s
   	id=params[:id].to_s
-  	unless sid==id
+  	unless sid==id or session[:user_id]
   		redirect_to login_url
   	end
   end
@@ -89,4 +92,8 @@ class StudentsController < ApplicationController
     def student_params
       params.require(:student).permit(:number, :name, :sex, :pswd, :year, :entrollmentTime, :orgin,:pswd_confirmation)
     end
+
+    def getUser
+  	@user=session[:user_id]
+   end
 end

@@ -1,6 +1,8 @@
 class GradesController < ApplicationController
   before_action :set_grade, only: [:show, :edit, :update, :destroy]
-skip_before_filter :authorize
+ before_filter :authorize
+ before_filter :checkAdmin
+ layout "users"
   # GET /grades
   # GET /grades.json
   def index

@@ -1,0 +1,62 @@
+<%= form_for(@course) do |f| %>
+  <% if @course.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
+
+      <ul>
+      <% @course.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <br>
+    课程名称<br>
+    <%= f.text_field :course_name %>
+  <br>
+  <br>
+    课程代号<br>
+    <%= f.text_field :course_id %>
+  <br>
+  <br>
+    学年<br>
+    <%= f.text_field :year %>
+  <br>
+  <br>
+    开始周<br>
+    <%= f.text_field :course_begin %>
+  <br>
+  <br>
+    结束周<br>
+    <%= f.text_field :course_end %>
+   <br>
+  <br>
+    开始节<br>
+    <%= f.text_field :lesson_begin %>
+   <br>
+  <br>
+    结束节<br>
+    <%= f.text_field :lesson_end %>
+   <br>
+  <br>
+   上课日期，周：<br>
+    <%= f.text_field :course_day %>
+  <br>
+  <br>
+   上课教师<br>
+    <%= f.text_field :teacher %>
+   <br>
+  <br>
+    上课地点<br>
+    <%= f.text_field :place %>
+    <br>
+    <br>
+    上课班级<br>
+    <%= f.text_field :grade_id %>
+   <br>
+  <br>
+    <%= f.submit %>
+   <br>
+  <br>
+<% end %>

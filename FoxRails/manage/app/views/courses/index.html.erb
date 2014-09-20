@@ -1,0 +1,48 @@
+<h1>所有课程</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>课程名称</th>
+      <th>课程代号</th>
+      <th>学年</th>
+      <th>开始周</th>
+      <th>结束周</th>
+      <th>开始节</th>
+      <th>结束节</th>
+      <th>上课日期</th>
+      <th>上课教师</th>
+      <th>上课地点</th>
+      <th>上课班级</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @courses.each do |course| %>
+      <tr>
+        <td><%= course.course_name %></td>
+        <td><%= course.course_id %></td>
+        <td><%= course.year %></td>
+        <td><%= course.course_begin %></td>
+        <td><%= course.course_end %></td>
+        <td><%= course.lesson_begin %></td>
+        <td><%= course.lesson_end %></td>
+        <td><%= course.course_day %></td>
+        <td><%= course.teacher %></td>
+        <td><%= course.place %></td>
+        <td><%= course.grade_id %></td>
+         <%if session[:user_id]%>
+          <td><%= link_to '详情', course %></td>
+           <td><%= link_to '编辑', edit_course_path(course) %></td>
+          <td><%= link_to '删除', course, method: :delete, data: { confirm: '删除将不可恢复' } %></td>
+         <%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%if session[:user_id]%>
+<%= link_to '新课程', new_course_path %>
+<%end%>

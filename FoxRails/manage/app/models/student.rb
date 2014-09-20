@@ -1,5 +1,7 @@
 class Student < ActiveRecord::Base
 	require 'digest/sha2'
+	belongs_to :grade
+
 	validates :number,:presence=>true,:uniqueness=>true
 	validates :pswd,:confirmation=>true
 	attr_accessor :pswd_confirmation

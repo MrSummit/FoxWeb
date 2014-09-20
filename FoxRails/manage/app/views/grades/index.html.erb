@@ -1,0 +1,29 @@
+<h1>所有班级</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>班级</th>
+      <th>专业</th>
+      <th>院系</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @grades.each do |grade| %>
+      <tr>
+        <td><%= grade.grade %></td>
+        <td><%= grade.profession %></td>
+        <td><%= grade.college %></td>
+        <td><%= link_to '详情', grade %></td>
+        <td><%= link_to '编辑', edit_grade_path(grade) %></td>
+        <td><%= link_to '删除', grade, method: :delete, data: { confirm: '这会删除班级中的所有同学!' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '新建班级', new_grade_path %>

@@ -1,4 +1,5 @@
 <%= form_for(@student) do |f| %>
+	
 	  <% if @student.errors.any? %>
 	    <div id="error_explanation">
 	      <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
@@ -10,60 +11,34 @@
 	      </ul>
 	    </div>
 	  <% end %>
-
-	
 	   学号<br>
 	    <%= f.text_field :number %>
-	 
 	  <br>
-	 
 	    姓名<br>
 	    <%= f.text_field :name %>
-	 
 	  <br>
-	 
 	    性别<br>
 	    <%= f.text_field :sex %>
-	
 	  <br>
-	 
 	    密码<br>
 	    <%= f.text_field :pswd %>
-	
 	  <br>
-	
 	   密码确认<br>
 	    <%= f.text_field :pswd_confirmation %>
-	 
 	  <br>
-	
 	   班级<br>
-	    <%= f.text_field :class_id %>
-	
+	    <%=text_field_tag :grade,params[:grade] %>
 	  <br>
-	
-	   院系<br>
-	    <%= f.text_field :college %>
-	
-	  <br>
-	  
 	    年级<br>
 	    <%= f.text_field :year %>
-	 
 	  <br>
-	
 	    入学年份<br>
 	    <%= f.text_field :entrollmentTime %>
-	  
 	  <br>
-	
 	    生源地<br>
 	    <%= f.text_field :orgin %>
-	
 	  <br>
 	    <%= f.submit %>
-	 
-
 	   <br>
 	  <br>
 <% end %>

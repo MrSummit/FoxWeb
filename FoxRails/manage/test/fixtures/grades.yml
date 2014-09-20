@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  grade: MyString
+  profession: MyString
+  college: MyString
+
+two:
+  grade: MyString
+  profession: MyString
+  college: MyString

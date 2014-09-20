@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<%grade=@student.grade%>
 <p>
   <strong>学号:</strong>
   <%= @student.number %>
@@ -16,13 +16,18 @@
 </p>
 
 <p>
+  <strong>专业:</strong>
+  <%= grade.profession %>
+</p>
+
+<p>
   <strong>班级:</strong>
-  <%= @student.class_id %>
+  <%= grade.grade %>
 </p>
 
 <p>
   <strong>院系:</strong>
-  <%= @student.college %>
+  <%= grade.college %>
 </p>
 
 <p>

@@ -11,6 +11,7 @@ class StudentsController < ApplicationController
   # GET /students/1
   # GET /students/1.json
   def show
+
   end
 
   # GET /students/new
@@ -28,15 +29,21 @@ class StudentsController < ApplicationController
     @student = Student.new(student_params)
 
     respond_to do |format|
+     grade=Grade.find_by grade: params[:grade]
+     if grade
+      @student.grade_id=grade.id
       if @student.save
          session[:student_id]=@student.id
-         
-        format.html { render  :action=>'show',:id=>@student.id, notice: 'Student was successfully created.' }
+        format.html { render  :action=>'show',:id=>@student.id, notice: '用户创建成功' }
         format.json { render :show, status: :created, location: @student }
       else
-        format.html { render :new }
+        format.html { render :new,notice: '用户创建失败' }
         format.json { render json: @student.errors, status: :unprocessable_entity }
       end
+     else 
+         format.html { render :new ,notice:'班级不存在'}
+        format.json { render json: @student.errors, status: :unprocessable_entity }
+     end
     end
   end
 
@@ -45,7 +52,7 @@ class StudentsController < ApplicationController
   def update
     respond_to do |format|
       if @student.update(student_params)
-        format.html { redirect_to student_url, notice: 'Student was successfully updated.' }
+        format.html { redirect_to student_url, notice: '信息更改成功' }
         format.json { render :show, status: :ok, location: @student }
       else
         format.html { render :edit }
@@ -80,6 +87,6 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params.require(:student).permit(:number, :name, :sex, :pswd, :class_id, :college, :year, :entrollmentTime, :orgin,:pswd_confirmation)
+      params.require(:student).permit(:number, :name, :sex, :pswd, :year, :entrollmentTime, :orgin,:pswd_confirmation)
     end
 end

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :grades
+
   resources :students
 
   controller :session do

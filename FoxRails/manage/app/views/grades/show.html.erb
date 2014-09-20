@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>班级:</strong>
+  <%= @grade.grade %>
+</p>
+
+<p>
+  <strong>专业:</strong>
+  <%= @grade.profession %>
+</p>
+
+<p>
+  <strong>院系:</strong>
+  <%= @grade.college %>
+</p>
+
+
+<h1>班级同学</h1>
+<%students=@grade.students%>
+<table>
+  <thead>
+    <tr>
+      <th>学号</th>
+      <th>姓名</th>
+      <th>性别</th>
+      <th>年级</th>
+      <th>入学年份</th>
+      <th>生源地</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% students.each do |student| %>
+      <tr>
+        <td><%= student.number %></td>
+        <td><%= student.name %></td>
+        <td><%=student.sex %></td>
+        <td><%= student.year %></td>
+        <td><%= student.entrollmentTime %></td>
+        <td><%=student.orgin %></td>
+        <td><%= link_to '详情', student %></td>
+        <td><%= link_to '编辑', edit_student_path(student) %></td>
+        <td><%= link_to '删除', student, method: :delete, data: { confirm: '信息不可恢复!' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<%= link_to '修改', edit_grade_path(@grade) %> |
+<%= link_to '返回', grades_path %>
